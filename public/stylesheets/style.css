@@ -1,8 +1,134 @@
 body {
-    padding: 50px;
-    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    padding: 0;
+    margin: 0;
+    height:100%;
+    width: 100%;
+
+    /* Vars */
+    --navHeight: 6%;
+    --footerBarHeight: 6%;
+    --footerHeight: 1.25rem;
 }
 
 a {
     color: #00B7FF;
+}
+
+#root {
+    height: 100vh;
+    width: 100vw;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: #505050;
+    height: var(--navHeight);
+    padding: 0.35rem 0.15rem;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+h1 {
+    margin: 0 0 0 1.25rem;
+    padding: 0;
+    color: #dcdcdc;
+}
+
+#navButtons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#navButtons button {
+    margin-right: 1.25rem;
+}
+
+#workplace {
+    display: flex;
+    height: calc(100% - var(--navHeight) - var(--footerBarHeight) - var(--footerHeight));
+    width: 100%;
+}
+
+#toolbox {
+    width: 10%;
+    height: 100%;
+    box-sizing: border-box;
+    background-color: #505050;
+    display: flex;
+    justify-content: center;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    padding: 1rem 0.5rem;
+}
+
+#toolbox i {
+    font-size: 1.8vw;
+    margin: 0 10% 10%;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border: none;
+}
+
+.tooltip .tooltiptext {
+    font-size: 1vw;
+    visibility: hidden;
+    width: 7.5rem;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 50%;
+    margin-left: -60px;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+#container {
+    width: 90%;
+    box-sizing: border-box;
+    background-color: #979797;
+}
+
+#mediaContent {
+    position: absolute;
+    right: 0;
+    top: var(--navHeight);
+    width: 30%;
+    height: calc(100% - var(--navHeight) - var(--footerBarHeight) - var(--footerHeight));
+    box-sizing: border-box;
+    background-color: #505050;
+
+    opacity: 0.5; /* TODO: Remove this after implementing button that shows this content */
+}
+
+#footerBar {
+    display: flex;
+    justify-content: flex-end;
+    height: var(--footerBarHeight);
+    box-sizing: border-box;
+    background-color: #505050;
+    padding: 0.35rem 0.15rem;
+}
+
+#footerBar button {
+    margin-right: 1.25rem;
+}
+
+footer {
+    height: var(--footerHeight);
+    text-align: center;
+    background-color: #232323;
+    color: #dcdcdc;
 }

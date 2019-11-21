@@ -1,0 +1,27 @@
+extends ../layout
+
+block content
+
+    -
+        // Just for testing purposes
+        var toolbox = [{
+            faClass: "far fa-square",
+            tooltip: "Square"
+        },{
+            faClass: "far fa-circle",
+            tooltip: "Circle"
+        },{
+            faClass: "fas fa-plus-circle",
+            tooltip: "Plus Circle"
+        },{
+            faClass: "fas fa-archway",
+            tooltip: "Archway"
+        }]
+
+
+    include nav
+    #workplace
+        include toolbox
+        include container
+        include media_content
+    include footer_bar
