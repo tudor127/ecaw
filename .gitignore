@@ -3,3 +3,4 @@ node_modules
 package-lock.json
 public/images/*
 !public/images/favicon.ico
+config.json
