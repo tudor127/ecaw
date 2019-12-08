@@ -8,6 +8,7 @@ body {
     --navHeight: 6%;
     --footerBarHeight: 6%;
     --footerHeight: 1.25rem;
+    --showMediaContentButtonSize: 4rem;
 }
 
 a {
@@ -103,14 +104,38 @@ h1 {
 
 #mediaContent {
     position: absolute;
-    right: 0;
+    right: 0; /* or 30% */
     top: var(--navHeight);
-    width: 30%;
+    width: 0;
     height: calc(100% - var(--navHeight) - var(--footerBarHeight) - var(--footerHeight));
     box-sizing: border-box;
     background-color: #505050;
+    transition: 0.2s ease-in-out;
+}
 
-    opacity: 0.5; /* TODO: Remove this after implementing button that shows this content */
+#showMediaContent {
+    position: absolute;
+    right: 0; /* or calc(30% - var(--showMediaContentButtonSize) / 2) */
+    top: calc((100% - var(--navHeight) - var(--footerBarHeight) - var(--footerHeight)) / 2);
+    width: var(--showMediaContentButtonSize);
+    height: var(--showMediaContentButtonSize);
+    border: #232323 solid 0.1rem;
+    border-radius: 50%;
+    background-color: #e7e7e7;
+    color: #232323;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+#showMediaContent:hover {
+    background-color: #232323;
+    color: #e7e7e7;
+}
+
+#showMediaContent i {
+    text-align: center;
+    width: 100%;
+    font-size: var(--showMediaContentButtonSize);
 }
 
 #footerBar {
