@@ -11,8 +11,13 @@ let createUserTable = `CREATE TABLE IF NOT EXISTS USERS (
     content BLOB,
     PRIMARY KEY(user_id, project_name),
     CONSTRAINT fk_user_creations FOREIGN KEY (user_id) REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE
-)`;
+)`,
+    createMediaContentCategoriesTable = `CREATE TABLE IF NOT EXISTS media_content_categories (
+    category_name VARCHAR (30) PRIMARY KEY,
+    url VARCHAR (30)
+)`
+;
 
-let orderedArray = [createUserTable, createCreationsTable];
+let orderedArray = [createUserTable, createCreationsTable, createMediaContentCategoriesTable];
 
 module.exports = orderedArray;
