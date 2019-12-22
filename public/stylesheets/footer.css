@@ -1,0 +1,19 @@
+#footerBar {
+    display: flex;
+    justify-content: flex-end;
+    height: var(--footerBarHeight);
+    box-sizing: border-box;
+    background-color: #505050;
+    padding: 0.35rem 0.15rem;
+}
+
+#footerBar button {
+    margin-right: 1.25rem;
+}
+
+footer {
+    height: var(--footerHeight);
+    text-align: center;
+    background-color: #232323;
+    color: #dcdcdc;
+}

@@ -1,0 +1,24 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: #505050;
+    height: var(--navHeight);
+    padding: 0.35rem 0.15rem;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+h1 {
+    margin: 0 0 0 1.25rem;
+    padding: 0;
+    color: #dcdcdc;
+}
+
+#navButtons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#navButtons button {
+    margin-right: 1.25rem;
+}

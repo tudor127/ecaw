@@ -22,13 +22,14 @@ let seedMediaContentCategories = [
         category_name: "Cats",
         url: "https://api.thecatapi.com/v1/images/search",
         api_key: "57873579-04bb-4fb3-9639-b5d629da4e95"
+    },
+    {
+        category_name: "Dogs",
+        url: "https://random.dog/woof.json",
+        api_key: ""
     }
 ];
 
-/**
- * These DML statements are made by developers on dev environment.
- * I do not care about SQL injections here
- */
 Promise.all([
     (async() => {
         for (let i = 0; i < seedUsers.length; i++) {
