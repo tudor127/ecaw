@@ -1,5 +1,12 @@
+- var log_var=logged
 nav
     h1= title
     #navButtons
-        button#signUp Sign Up
-        button#logIn Log In
+        if log_var==false
+            button(id='logOut',class='hidden') Log Out
+            button(id='signUp') Sign Up
+            button(id='logIn') Log In
+        else
+            button(id='logOut') Log Out
+            button(id='signUp',class='hidden') Sign Up
+            button(id='logIn',class='hidden') Log In
