@@ -1,6 +1,6 @@
-#loginPanel{
+#registerPanel{
 width: 250px;
-min-height: 215px;
+min-height: 315px;
 position: absolute;
 right: 0px;
 background:
@@ -15,15 +15,7 @@ animation-duration: .6s;
 display: none;
 }
 
-#navButtons #user_name{
-display: block;
-margin: 0px 15px;
-color:
-#ddd;
-font-size: 17px;
-}
-
-#loginPanel h2{
+#registerPanel h2{
 text-align: center;
 font-size: 20px;
 color:
@@ -31,7 +23,7 @@ color:
 margin: 0px auto 20px auto;
 }
 
-#loginClose{
+#registerClose{
 position: absolute;
 right: 4px;
 top: 13px;
@@ -41,7 +33,7 @@ color:
 #777474;
 }
 
-#loginSubmit{
+#registerSubmit{
 width: 70px;
 padding: 8px 12px;
 border-radius: 5px;
@@ -54,11 +46,12 @@ color:#fff;
 cursor: pointer;
 }
 
-#loginSubmit:hover{
+#registerSubmit:hover{
 	background:#545252;
 }
 
-#username,#password{
+#register_username,#register_password,#register_email,
+#register_password_confirm{
 width: 200px;
 margin: 0px auto;
 margin-bottom: 0px;
@@ -84,15 +77,11 @@ margin-bottom: 15px;
   from {opacity:0%;}
   to {opacity:100%;}
 }
-#result{
+#register_result{
 	padding: 3px 8px;
 	color: #fff;
 	margin-top: 13px;
 	border-radius: 6px;
-}
-
-#logOut{
-	/*display: none;*/
 }
 
 .hidden{

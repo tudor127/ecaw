@@ -4,9 +4,11 @@ var loginBtn=document.getElementById('logIn');
 var signupBtn=document.getElementById('signUp');
 var logoutBtn=document.getElementById('logOut');
 var loginSubmit=document.getElementById('loginSubmit');
+var registerPanel=document.getElementById('registerPanel');
 
 loginBtn.addEventListener("click", function(){
-	loginPanel.style.display="block";
+  loginPanel.style.display="block";
+	registerPanel.style.display="none";
   document.getElementById("result").innerHTML="";
   document.getElementById("result").style.background="transparent";
 });
@@ -28,6 +30,8 @@ function login() {
         logoutBtn.style.display="block";
         signupBtn.style.display="none";
         loginBtn.style.display="none";
+        document.getElementById("user_name").style.display = 'block';
+        document.getElementById("user_name").childNodes[1].innerHTML = username;
 	     // loginBtn.innerHTML='Log out';
 
     }
@@ -52,6 +56,7 @@ function logout(){
       logoutBtn.style.display ="none";
       signupBtn.style.display="block";
         loginBtn.style.display="block";
+        document.getElementById("user_name").style.display = 'none';
     }
   };
   xhttp.open("GET", "/logout", true);

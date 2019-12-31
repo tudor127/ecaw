@@ -1,9 +1,18 @@
+// let createUserTable = `CREATE TABLE IF NOT EXISTS users (
+//     id INT (6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+//     username VARCHAR (30) NOT NULL,
+//     passwd CHAR (64) NOT NULL,
+//     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+//     modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+// )`,
+
 let createUserTable = `CREATE TABLE IF NOT EXISTS users (
-    id INT (6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR (30) NOT NULL,
-    passwd CHAR (64) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  id int(6) UNSIGNED NOT NULL,
+  username varchar(30) COLLATE utf8_bin NOT NULL,
+  passwd char(64) COLLATE utf8_bin NOT NULL,
+  created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  modified_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  email varchar(200) COLLATE utf8_bin NOT NULL
 )`,
     createCreationsTable = `CREATE TABLE IF NOT EXISTS creations (
     user_id INT (6) UNSIGNED,

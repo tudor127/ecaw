@@ -15,13 +15,16 @@ router.use(bodyParser.json());
 router.get('/', function(req, res, next) {
     let mediaContentController = new MediaContentController(mysql);
     let categories = mediaContentController.getCategories();
-    let log_var;
+    let log_var,user_name;
     if(req.session.loggedin){
     log_var=true;
+    user_name=req.session.username;
 }else {
 log_var=false;
+user_name='';
+
 }
-    res.render('index', { title: 'ECAW', categories: categories,logged:log_var});
+    res.render('index', { title: 'ECAW', categories: categories,logged:log_var,user_name:user_name});
 });
 
 module.exports = router;

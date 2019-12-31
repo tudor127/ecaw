@@ -48,6 +48,39 @@ class UserController {
      }
   });
 }
+
+ registerUser(username,password,confirm_password,email,callback){
+      username=htmlspecialchars(username);
+      password=htmlspecialchars(password);
+      confirm_password=htmlspecialchars(confirm_password);
+      email=htmlspecialchars(email);
+     this.checkUsername(username,function(result){
+     if(result=='error'){
+      return callback(-1);//error
+     }
+     else if(result=='none'){
+      if(password===confirm_password){
+                var sql = "insert into users(username,passwd,email,created_at,modified_at) values('"+username+"','"+passwordHash.generate(password)+"','"+email+"',now(),now())";
+      con.query(sql, function(err, results){
+            if (err){ 
+
+              return callback(-1);//error
+            }
+
+              return callback(1);
+  
+    });
+      }
+      else{
+      return callback(-3);//unconfirmed password
+      }
+     }
+     else {      
+      return callback(-2);//username already exists
+     }
+  });
+}
+
 }
 
 module.exports = UserController;
