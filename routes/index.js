@@ -1,27 +1,23 @@
 var express = require('express');
 var mysql = require('../models/mysql');
-var MediaContentController = require('../controllers/MediaContentController');
+var MediaContent = require('../models/MediaContentModel');
 var router = express.Router();
-var session = require('express-session');
-var bodyParser = require('body-parser');
-router.use(session({
-	secret: '1234',
-	resave: true,
-	saveUninitialized: true
-}));
-router.use(bodyParser.urlencoded({extended : true}));
-router.use(bodyParser.json());
+
+let mediaContent = new MediaContent(mysql);
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    let mediaContentController = new MediaContentController(mysql);
-    let categories = mediaContentController.getCategories();
-    let log_var;
-    if(req.session.loggedin){
-    log_var=true;
-}else {
-log_var=false;
-}
-    res.render('index', { title: 'ECAW', categories: categories,logged:log_var});
+    mediaContent.getCategories().then((results) => {
+        res.render('index', { title: 'ECAW', categories: results });
+    });
+});
+
+router.get('/category/:name', function(req, res, next) {
+    mediaContent.getCategoryContent(req.params.name, req.query.page).catch(reason => {
+        res.end("[]");
+    }).then(value => {
+        res.end(JSON.stringify(value));
+    });
 });
 
 module.exports = router;
