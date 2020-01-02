@@ -2,14 +2,34 @@ var express = require('express');
 var mysql = require('../models/mysql');
 var MediaContent = require('../models/MediaContentModel');
 var router = express.Router();
+var session = require('express-session');
+var bodyParser = require('body-parser');
 
 let mediaContent = new MediaContent(mysql);
+
+router.use(session({
+	secret: '1234',
+	resave: true,
+	saveUninitialized: true
+}));
+router.use(bodyParser.urlencoded({extended : true}));
+router.use(bodyParser.json());
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
     mediaContent.getCategories().then((results) => {
-        res.render('index', { title: 'ECAW', categories: results });
-    });
+    	let log_var,user_name;
+    	if(req.session.loggedin){
+	  		log_var=true;
+    		user_name=req.session.username;
+		}
+		else {
+			log_var=false;
+			user_name='';
+		}
+		user={'logged':log_var,'name':user_name}  
+        res.render('index', { title: 'ECAW', categories: results,user:user});
+    });  
 });
 
 router.get('/category/:name', function(req, res, next) {

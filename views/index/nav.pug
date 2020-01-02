@@ -1,5 +1,17 @@
 nav
     h1= title
     #navButtons
-        button#signUp Sign Up
-        button#logIn Log In
+        if user.logged==false
+            span(id='user_name',style='display:none')
+                span(class='fa fa-user',style='margin-right:3px;font-size:14px')
+                span= user_name
+            button(id='logOut',class='hidden') Log Out
+            button(id='signUp') Sign Up
+            button(id='logIn') Log In
+        else
+            span(id='user_name')
+                span(class='fa fa-user',style='margin-right:3px;font-size:14px')
+                span= user.name
+            button(id='logOut') Log Out
+            button(id='signUp',class='hidden') Sign Up
+            button(id='logIn',class='hidden') Log In

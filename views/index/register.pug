@@ -1,0 +1,10 @@
+#registerPanel
+    form(action='javascript:void(0)',method='post',id='register_form')
+        h2 Sign Up
+        input(id='register_username',type='text',placeholder='Username',required)
+        input(id='register_email',type='email',placeholder='Email',required)
+        input(id='register_password',type='password',placeholder='Password',required)
+        input(id='register_password_confirm',type='password',placeholder='Confirm Password',required)
+        button(id='registerSubmit') Submit
+    button(id="registerClose",class="fa fa-times")
+    #register_result

@@ -1,0 +1,89 @@
+#registerPanel{
+width: 250px;
+min-height: 315px;
+position: absolute;
+right: 0px;
+background:
+#eee;
+border-radius: 10px 0px 0px 10px;
+top: 45px;
+padding: 20px 25px;
+-webkit-animation-name: display;
+-webkit-animation-duration: .6s;
+animation-name: display;
+animation-duration: .6s;
+display: none;
+}
+
+#registerPanel h2{
+text-align: center;
+font-size: 20px;
+color:
+#777;
+margin: 0px auto 20px auto;
+}
+
+#registerClose{
+position: absolute;
+right: 4px;
+top: 13px;
+border: 0px;
+font-size: 18px;
+color:
+#777474;
+}
+
+#registerSubmit{
+width: 70px;
+padding: 8px 12px;
+border-radius: 5px;
+border: 0px;
+font-size: 13px;
+margin: 0px auto;
+display: block;
+background:#999;
+color:#fff;
+cursor: pointer;
+}
+
+#registerSubmit:hover{
+	background:#545252;
+}
+
+#register_username,#register_password,#register_email,
+#register_password_confirm{
+width: 200px;
+margin: 0px auto;
+margin-bottom: 0px;
+margin-bottom: 0px;
+display: block;
+clear: both;
+background:#fff;
+border: 1px solid #aaa;
+padding: 8px 12px;
+border-radius: 5px;
+font-size: 16px;
+margin-bottom: 15px;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes display {
+ from {opacity:0%;}
+  to {opacity:100%;}
+}
+
+/* Standard syntax */
+@keyframes display {
+  from {opacity:0%;}
+  to {opacity:100%;}
+}
+#register_result{
+	padding: 5px 8px;
+	color: #fff;
+	margin-top: 13px;
+	border-radius: 6px;
+}
+
+.hidden{
+	display: none;
+}

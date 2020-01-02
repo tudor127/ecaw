@@ -33,3 +33,6 @@ a {
     height: calc(100% - var(--navHeight) - var(--footerBarHeight) - var(--footerHeight));
     width: 100%;
 }
+.hidden{
+    display: none;
+}
