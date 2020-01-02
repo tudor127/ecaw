@@ -1,3 +1,9 @@
 #mediaContent
+    if categories.length > 0
+        #categories
+            each category in categories
+                a.category(href="")= category.category_name
+    #mediaContentItems
+    #loadMore
 #showMediaContent
     i#mediaContentArrow(class="fas fa-chevron-left")
