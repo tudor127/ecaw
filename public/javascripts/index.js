@@ -26,4 +26,11 @@ document.getElementById("circle").addEventListener("click", function(){container
 document.getElementById("triangle").addEventListener("click", function(){containerController.setTool("triangle")});
 document.getElementById("color").addEventListener("change", function(){containerController.setColor("color")});
 
+let container = document.getElementById("container");
+containerController.canvas.setWidth(container.offsetWidth);
+containerController.canvas.setHeight(container.offsetHeight);
 
+window.addEventListener("resize", function() {
+    containerController.canvas.setWidth(container.offsetWidth);
+    containerController.canvas.setHeight(container.offsetHeight);
+});

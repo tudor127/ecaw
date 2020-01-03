@@ -70,3 +70,7 @@
     cursor: pointer;
     color: #dcdcdc;
 }
+
+@media screen and (max-width: 480px) {
+
+}
