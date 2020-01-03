@@ -1,6 +1,13 @@
 - if (toolbox.length > 0) {
     #toolbox
         each tool in toolbox
-            i.tooltip(class=tool.faClass)
+            i.tooltip(class=tool.faClass,id=tool.id)
                 span.tooltiptext= tool.tooltip
+        #color_box
+            i.tooltip(class='fa')
+                input(type='color',id='color')
+                span.tooltiptext= 'Color'
+
+
+
 - }

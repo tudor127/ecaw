@@ -13,6 +13,7 @@
 #toolbox i {
     font-size: 1.8vw;
     margin: 0 10% 10%;
+    cursor:pointer;
 }
 
 .tooltip {
@@ -42,3 +43,15 @@
 .tooltip:hover .tooltiptext {
     visibility: visible;
 }
+
+#color_box{
+width: 100%;
+clear: both;height: 30px;
+text-align: left;
+}
+
+#color{
+width: 40px;
+margin:0 20%;
+}
+
