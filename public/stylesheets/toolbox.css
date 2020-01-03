@@ -11,47 +11,57 @@
 }
 
 #toolbox i {
-    font-size: 1.8vw;
-    margin: 0 10% 10%;
-    cursor:pointer;
+    font-size: 1.8rem;
+    cursor: pointer;
 }
 
 .tooltip {
+    margin: 0 10% 10%;
     position: relative;
     display: inline-block;
     border: none;
 }
 
 .tooltip .tooltiptext {
-    font-size: 1vw;
+    font-size: 1rem;
     visibility: hidden;
-    width: 7.5rem;
     background-color: black;
     color: #fff;
     text-align: center;
     border-radius: 6px;
-    padding: 5px 0;
+    padding: 5px 10px;
+    white-space: nowrap;
+    box-sizing: border-box;
+    transform: translateX(-50%);
 
     /* Position the tooltip */
     position: absolute;
     z-index: 1;
     top: 100%;
     left: 50%;
-    margin-left: -60px;
 }
 
 .tooltip:hover .tooltiptext {
     visibility: visible;
 }
 
-#color_box{
-width: 100%;
-clear: both;height: 30px;
-text-align: left;
+#color {
+    padding: 0;
+    width: 1.8rem;
+    border: none;
+    background-color: transparent;
+    /*margin: 0 10% 10%;*/
+    cursor: pointer;
+    outline: none;
 }
 
-#color{
-width: 40px;
-margin:0 20%;
-}
+@media screen and (max-width: 480px) {
+    #toolbox {
+        width: 100%;
+        height: 30%;
+    }
 
+    .tooltip {
+        margin: 0 5% 5%;
+    }
+}

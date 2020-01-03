@@ -12,9 +12,9 @@ export class BaseController {
         let mediaContentArrow = document.getElementById("mediaContentArrow");
         let newArrowClass = "fas " + (this.showMediaContentState ? "fa-chevron-right" : "fa-chevron-left");
 
-        mediaContent.style.width = this.showMediaContentState ? "30%" : "0px";
+        mediaContent.style.width = this.showMediaContentState ? "var(--mediaContentWidth)" : "0px";
         mediaCategories.style.display = mediaContentItems.style.display = this.showMediaContentState ? "flex" : "none";
-        mediaContentButton.style.right = this.showMediaContentState ? "calc(30% - var(--showMediaContentButtonSize) / 2)" : "0px";
+        mediaContentButton.style.right = this.showMediaContentState ? "calc(var(--mediaContentWidth) - var(--showMediaContentButtonSize) / 2)" : "0px";
         mediaContentArrow.setAttribute("class", newArrowClass);
     }
 }
