@@ -20,6 +20,11 @@
     position: relative;
     display: inline-block;
     border: none;
+    transition: 0.1s ease-in-out;
+}
+
+.tooltip:hover {
+    color: #979797;
 }
 
 .tooltip .tooltiptext {
@@ -50,9 +55,12 @@
     width: 1.8rem;
     border: none;
     background-color: transparent;
-    /*margin: 0 10% 10%;*/
     cursor: pointer;
     outline: none;
+}
+
+.selectedTool {
+    color: #dddddd;
 }
 
 @media screen and (max-width: 480px) {

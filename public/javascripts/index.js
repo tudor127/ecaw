@@ -17,14 +17,16 @@ document.getElementById("logOut").addEventListener("click", userController.logou
 document.getElementById("signUp").addEventListener("click", userController.showRegisterForm);
 document.getElementById("registerClose").addEventListener("click", userController.hideRegisterForm);
 document.getElementById("register_form").addEventListener("submit", userController.register);
-document.getElementById("container").addEventListener("mousedown", function(e){containerController.drawListener(e);});
 
 // toolbox listeners
-document.getElementById("move").addEventListener("click",function(){containerController.setTool("move")});
+/*document.getElementById("move").addEventListener("click",function(){containerController.setTool("move")});
 document.getElementById("square").addEventListener("click",function(){containerController.setTool("square")});
 document.getElementById("circle").addEventListener("click", function(){containerController.setTool("circle")});
-document.getElementById("triangle").addEventListener("click", function(){containerController.setTool("triangle")});
+document.getElementById("triangle").addEventListener("click", function(){containerController.setTool("triangle")});*/
 document.getElementById("color").addEventListener("change", function(){containerController.setColor("color")});
+document.getElementById("delete").addEventListener("click", containerController.deleteObject.bind(containerController));
+
+document.getElementById("toolbox").addEventListener("click", containerController.setTool.bind(containerController));
 
 let container = document.getElementById("container");
 containerController.canvas.setWidth(container.offsetWidth);
