@@ -7,6 +7,7 @@ export class ContainerController {
         this.currentlyCreatingPolygon = null;
 
         this.canvas.on('mouse:down', this.drawListener.bind(this));
+        document.getElementById(this.selectedToolId).classList.add('selectedTool');
     }
 
     setTool(event) {
@@ -17,14 +18,12 @@ export class ContainerController {
             return;
         }
 
-        document.getElementById(this.selectedToolId).classList.remove('selectedTool');
+        this.currentlyCreatingPolygon = null;
 
-        if (this.selectedToolId === selectedToolId) {
-            this.selectedToolId = 'move';
-        } else {
-            this.selectedToolId = selectedToolId;
-            document.getElementById(this.selectedToolId).classList.add('selectedTool');
-        }
+        document.getElementById(this.selectedToolId).classList.remove('selectedTool');
+        // If the same tool is selected then select 'move' since that would mean to cancel the currently selected tool
+        this.selectedToolId = this.selectedToolId === selectedToolId ? 'move' : selectedToolId;
+        document.getElementById(this.selectedToolId).classList.add('selectedTool');
     }
 
     setColor(id) {
@@ -67,6 +66,7 @@ export class ContainerController {
     }
 
     deleteObject() {
+        this.currentlyCreatingPolygon = null;
         this.canvas.remove(this.selectedObject);
     }
 
@@ -118,13 +118,11 @@ export class ContainerController {
         if (this.currentlyCreatingPolygon === null) {
             this.currentlyCreatingPolygon = new fabric.Polygon([
                 { x: 0, y: 0 }
-                /*{ x: 64, y: 89 },
-                { x: 83, y: 134 },
-                { x: 92, y: 120 }*/
             ], {
                 left: x,
                 top: y,
-                stroke: "red"
+                stroke: this.selectedColor,
+                fill: this.selectedColor
             });
 
             this.canvas.add(this.currentlyCreatingPolygon);
@@ -136,7 +134,7 @@ export class ContainerController {
             points.push({ x: x - left, y: y - top });
 
             this.canvas.remove(this.currentlyCreatingPolygon);
-            this.currentlyCreatingPolygon = new fabric.Polygon(points, { left, top, stroke: "red" });
+            this.currentlyCreatingPolygon = new fabric.Polygon(points, { left, top, stroke: this.selectedColor, fill: this.selectedColor });
             this.canvas.add(this.currentlyCreatingPolygon);
         }
     }

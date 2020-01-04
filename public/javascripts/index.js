@@ -19,13 +19,8 @@ document.getElementById("registerClose").addEventListener("click", userControlle
 document.getElementById("register_form").addEventListener("submit", userController.register);
 
 // toolbox listeners
-/*document.getElementById("move").addEventListener("click",function(){containerController.setTool("move")});
-document.getElementById("square").addEventListener("click",function(){containerController.setTool("square")});
-document.getElementById("circle").addEventListener("click", function(){containerController.setTool("circle")});
-document.getElementById("triangle").addEventListener("click", function(){containerController.setTool("triangle")});*/
 document.getElementById("color").addEventListener("change", function(){containerController.setColor("color")});
 document.getElementById("delete").addEventListener("click", containerController.deleteObject.bind(containerController));
-
 document.getElementById("toolbox").addEventListener("click", containerController.setTool.bind(containerController));
 
 let container = document.getElementById("container");

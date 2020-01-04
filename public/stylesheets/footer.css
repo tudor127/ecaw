@@ -16,4 +16,6 @@ footer {
     text-align: center;
     background-color: #232323;
     color: #dcdcdc;
+    word-wrap: break-word;
+    overflow: scroll;
 }

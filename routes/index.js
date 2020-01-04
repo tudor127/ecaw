@@ -32,13 +32,13 @@ router.get('/', function (req, res, next) {
 			tooltip: "Move",
 			id: "move"
 		},{
-            faClass: "fas fa-draw-polygon",
-            tooltip: "Polygon",
-            id: "polygon"
-        },{
             faClass: "far fa-trash-alt",
             tooltip: "Delete",
             id: "delete"
+        },{
+            faClass: "fas fa-draw-polygon",
+            tooltip: "Polygon",
+            id: "polygon"
         },{
 			faClass: "far fa-square",
 			tooltip: "Square",
