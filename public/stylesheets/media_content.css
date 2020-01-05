@@ -62,6 +62,7 @@
     width: 150px;
     height: auto;
     margin: 2%;
+    cursor: pointer;
 }
 
 #loadMore {

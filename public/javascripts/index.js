@@ -19,10 +19,14 @@ document.getElementById("registerClose").addEventListener("click", userControlle
 document.getElementById("register_form").addEventListener("submit", userController.register);
 
 // toolbox listeners
-document.getElementById("color").addEventListener("change", function(){containerController.setColor("color")});
+document.getElementById("color").addEventListener("change", containerController.setColor.bind(containerController));
 document.getElementById("delete").addEventListener("click", containerController.deleteObject.bind(containerController));
 document.getElementById("toolbox").addEventListener("click", containerController.setTool.bind(containerController));
 
+// Media content
+document.getElementById("mediaContentItems").addEventListener("click", containerController.createMedia.bind(containerController));
+
+// Make canvas responsive
 let container = document.getElementById("container");
 containerController.canvas.setWidth(container.offsetWidth);
 containerController.canvas.setHeight(container.offsetHeight);

@@ -72,10 +72,17 @@ export class MediaContentController {
 
                 if (knownVideoExtensions.includes(extension)) {
                     video.className = "contentItem";
-                    video.setAttribute("muted", "");
-                    video.setAttribute("autoplay", "");
-                    video.setAttribute("controls", "");
-                    video.setAttribute("src", item.url);
+                    video.setAttribute("muted", "muted");
+                    video.muted = true;
+                    video.setAttribute("autoplay", "autoplay");
+                    video.setAttribute("loop", "loop");
+                    video.setAttribute("width", "auto");
+                    video.setAttribute("height", "auto");
+
+                    let source = document.createElement("source");
+                    source.setAttribute("src", item.url);
+
+                    video.appendChild(source);
                     content.appendChild(video);
                 } else {
                     image.className = "contentItem";

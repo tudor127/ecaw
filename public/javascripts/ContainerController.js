@@ -6,10 +6,20 @@ export class ContainerController {
         this.selectedObject = null;
         this.currentlyCreatingPolygon = null;
 
+        fabric.util.requestAnimFrame(function render() {
+            this.canvas.renderAll();
+            fabric.util.requestAnimFrame(render.bind(this));
+        }.bind(this));
+
         this.canvas.on('mouse:down', this.drawListener.bind(this));
         document.getElementById(this.selectedToolId).classList.add('selectedTool');
     }
 
+    /**
+     * Sets the selected tool for container from toolbox
+     *
+     * @param {Event} event
+     */
     setTool(event) {
         let selectedToolId = event.target.id;
         let possibleToolIds = ['move', 'polygon', 'square', 'circle', 'triangle'];
@@ -26,14 +36,25 @@ export class ContainerController {
         document.getElementById(this.selectedToolId).classList.add('selectedTool');
     }
 
-    setColor(id) {
-		this.selectedColor = document.getElementById(id).value;
+    /**
+     * Sets the selected color for container
+     *
+     * @param {Event} event
+     */
+    setColor(event) {
+        this.selectedColor = event.target.value;
 		if (this.selectedObject !== null) {
 		    this.selectedObject.setColor(this.selectedColor);
 		    this.canvas.renderAll();
         }
     }
 
+    /**
+     * Draws depending on the selected object and click position
+     *
+     * @param {number} x X coordinate
+     * @param {number} y Y coordinate
+     */
     drawShape(x, y) {
         switch (this.selectedToolId) {
             case 'square':
@@ -54,6 +75,11 @@ export class ContainerController {
         }
     }
 
+    /**
+     * Selects and objects or use selected tool from toolbox
+     *
+     * @param {Object} options
+     */
     drawListener(options) {
         this.selectedObject = options.target;
 
@@ -65,11 +91,20 @@ export class ContainerController {
         }
     }
 
+    /**
+     * Deletes selected object and resets polygon progress
+     */
     deleteObject() {
         this.currentlyCreatingPolygon = null;
         this.canvas.remove(this.selectedObject);
     }
 
+    /**
+     * Creates square at given coordinates
+     *
+     * @param {number} x
+     * @param {number} y
+     */
     createSquare(x, y) {
         // create a rectangle object
         let rect = new fabric.Rect({
@@ -86,7 +121,12 @@ export class ContainerController {
 		this.selectedToolId = 'move';
     }
 
-
+    /**
+     * Creates circle at given coordinates
+     *
+     * @param {number} x
+     * @param {number} y
+     */
     createCircle(x, y) {
         let circle = new fabric.Circle({
             left: x,
@@ -100,6 +140,12 @@ export class ContainerController {
 		this.selectedToolId = 'move';
     }
 
+    /**
+     * Creates triangle at given coordinates
+     *
+     * @param {number} x
+     * @param {number} y
+     */
     createTriangle(x, y) {
         let triangle = new fabric.Triangle({
             left: x,
@@ -114,6 +160,13 @@ export class ContainerController {
 		this.selectedToolId = 'move';
     }
 
+    /**
+     * Creates polygon at given coordinates
+     * Polygon is progressively created from the points given
+     *
+     * @param {number} x
+     * @param {number} y
+     */
     createPolygon(x, y) {
         if (this.currentlyCreatingPolygon === null) {
             this.currentlyCreatingPolygon = new fabric.Polygon([
@@ -137,5 +190,34 @@ export class ContainerController {
             this.currentlyCreatingPolygon = new fabric.Polygon(points, { left, top, stroke: this.selectedColor, fill: this.selectedColor });
             this.canvas.add(this.currentlyCreatingPolygon);
         }
+    }
+
+    /**
+     * Creates media element (image/video) from media content component
+     *
+     * @param {Event} event
+     */
+    createMedia(event) {
+        let element = event.target;
+
+        if (!(element instanceof HTMLImageElement) && !(element instanceof HTMLVideoElement)) {
+            return;
+        }
+
+        let centerX = this.canvas.getWidth() / 2;
+        let centerY = this.canvas.getHeight() / 2;
+
+        let media = new fabric.Image(element, {
+            left: centerX,
+            top: centerY,
+            originX: 'center',
+            originY: 'center',
+            objectCaching: false
+        }).scaleToWidth(element.offsetWidth);
+
+        media.getElement().setAttribute('width', element.videoWidth);
+        media.getElement().setAttribute('height', element.videoHeight);
+
+        this.canvas.add(media);
     }
 }
