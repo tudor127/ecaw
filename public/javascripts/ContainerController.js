@@ -5,6 +5,7 @@ export class ContainerController {
         this.selectedColor = document.getElementById('color').value;
         this.selectedObject = null;
         this.currentlyCreatingPolygon = null;
+        this.projectName = 'Untitled';
 
         fabric.util.requestAnimFrame(function render() {
             this.canvas.renderAll();
@@ -13,6 +14,29 @@ export class ContainerController {
 
         this.canvas.on('mouse:down', this.drawListener.bind(this));
         document.getElementById(this.selectedToolId).classList.add('selectedTool');
+    }
+
+    saveProject() {
+        let projectContent = new Blob([JSON.stringify(this.canvas)]);
+        console.log(projectContent);
+        projectContent.text().then(response => {
+            console.log(response);
+        });
+        fetch(`/save/${encodeURIComponent(this.projectName)}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/octet-stream'
+            },
+            body: projectContent
+        }).catch(reason => {
+
+        }).then(response => response.json()).then(response => {
+
+        })
+    }
+
+    changeTitle(event) {
+        this.projectName = event.target.innerText;
     }
 
     /**

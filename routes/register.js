@@ -18,7 +18,7 @@ router.post('/', function(req, res) {
 	 let password=req.body.password;
 	 let confirm_password=req.body.confirm_password;
 	 let email=req.body.email;
-	 let userModel = new UserModel(mysql);
+	 let userModel = new UserModel();
      userModel.registerUser(username,password,confirm_password,email,function(result){
     	 if(parseInt(result)==1){
      		req.session.loggedin = true;

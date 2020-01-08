@@ -14,6 +14,12 @@ h1 {
     color: #dcdcdc;
 }
 
+#projectName {
+    font-size: 1.6rem;
+    font-family: sans-serif;
+    color: #dcdcdc;
+}
+
 #navButtons {
     display: flex;
     justify-content: flex-end;
