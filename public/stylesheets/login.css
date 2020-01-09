@@ -39,6 +39,7 @@ border: 0px;
 font-size: 18px;
 color:
 #777474;
+background:transparent;
 }
 
 #loginSubmit{
@@ -97,4 +98,8 @@ margin-bottom: 15px;
 
 .hidden{
 	display: none;
+}
+
+#projectsPanelButton{
+	
 }

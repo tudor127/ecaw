@@ -2,6 +2,7 @@ nav
     h1= title
     #navButtons
         if user.logged==false
+            button(id='projectsPanelButton',class='hidden') Projects
             span(id='user_name',style='display:none')
                 span(class='fa fa-user',style='margin-right:3px;font-size:14px')
                 span= user_name
@@ -9,6 +10,7 @@ nav
             button(id='signUp') Sign Up
             button(id='logIn') Log In
         else
+            button(id='projectsPanelButton') Projects
             span(id='user_name')
                 span(class='fa fa-user',style='margin-right:3px;font-size:14px')
                 span= user.name

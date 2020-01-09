@@ -8,6 +8,7 @@ export class UserController {
         let logoutBtn=document.getElementById('logOut');
         let loginBtn=document.getElementById('logIn');
         let loginSubmit=document.getElementById('loginSubmit');
+        let projectsPanelButton=document.getElementById('projectsPanelButton');
         let username=document.getElementById('username').value;
         let password=document.getElementById('password').value;
         var xhttp = new XMLHttpRequest();
@@ -18,6 +19,7 @@ export class UserController {
                 document.getElementById("result").style.background = "#009f5496";
             setTimeout(function(){  loginPanel.style.display="none"; }, 1000);
             logoutBtn.style.display="block";
+            projectsPanelButton.style.display="block";
             signupBtn.style.display="none";
             loginBtn.style.display="none";
             document.getElementById("user_name").style.display = 'block';
@@ -48,12 +50,14 @@ export class UserController {
         let signupBtn=document.getElementById('signUp');
         let logoutBtn=document.getElementById('logOut');
         let loginBtn=document.getElementById('logIn');
+        let projectsPanelButton=document.getElementById('projectsPanelButton');
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange=function() {
             if (this.readyState == 4 && this.status == 200) {
                 logoutBtn.style.display ="none";
                 signupBtn.style.display="block";
                 loginBtn.style.display="block";
+                projectsPanelButton.style.display="none";
                 document.getElementById("user_name").style.display = 'none';
             }
         };
@@ -116,10 +120,17 @@ export class UserController {
     }
 
     showRegisterForm(){
+       let registerPanel=document.getElementById('registerPanel');
+       let loginPanel=document.getElementById('loginPanel');
        registerPanel.style.display="block";
        loginPanel.style.display="none";
        document.getElementById("register_result").innerHTML="";
        document.getElementById("register_result").style.background="transparent";
+    }
+
+    showProjectsPanel(){
+    let projectsPanel=document.getElementById('projectsPanelBox');
+       projectsPanel.style.display="block";
     }
 
     hideLoginForm(){
@@ -130,5 +141,10 @@ export class UserController {
     hideRegisterForm(){
         let registerPanel=document.getElementById('registerPanel');
         registerPanel.style.display="none";
+    }
+
+    hideProjectsPanel(){
+    let projectsPanel=document.getElementById('projectsPanelBox');
+       projectsPanel.style.display="none";
     }
 }

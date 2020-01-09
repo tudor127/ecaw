@@ -1,0 +1,84 @@
+#projectsPanel{
+	position:absolute;
+	top:10%;
+	width:60%;
+	height:80%;
+	background:#eee;
+	left: 20%;
+	border-radius: 20px;
+	-webkit-animation-name: display;
+	-webkit-animation-duration: .6s;
+	animation-name: display;
+	animation-duration: .6s;
+}
+
+#projectsPanel h1{
+width: 90%;
+text-align: center;
+margin: 20px 5%;
+font-size: 28px;
+height: 5%;
+color:
+#999;
+}
+#projectsPanelBox{
+	width:100%;
+	height: 100%;
+	background:#00000070;
+	display: none;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+#projectsClose{
+	position: absolute;
+	right: 8px;
+	top: 8px;
+	background:
+	transparent;
+	border: 0px;
+	font-size: 24px;
+	color:#777474;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes display {
+  from {opacity:0%;}
+  to {opacity:100%;}
+}
+
+/* Standard syntax */
+@keyframes display {
+  from {opacity:0%;}
+  to {opacity:100%;}
+}
+
+.projectsBox{
+	width:100%;
+	min-height: 50px;
+	padding: 20px;
+	box-sizing: border-box; 
+	height: 84%;
+	overflow-y: scroll;
+	background:#b0b0b01f;
+}
+
+.projectsBox .project{
+	width: 22%;
+	padding: 50px;
+	box-sizing: border-box;
+	float: left;
+	margin: 15px 1.5%;
+	display: block;
+	border:2px solid #ccc;
+	border-radius: 10px;
+	cursor: pointer;
+	transition-duration: .3s;
+
+}
+
+.projectsBox .project:hover{
+background:#ccc;
+}
+
