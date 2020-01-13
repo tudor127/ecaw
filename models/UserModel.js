@@ -61,6 +61,56 @@ class UserModel {
         });
     }
 
+    saveProject(username, projectName, body) {
+        return new Promise(((resolve, reject) => {
+            let query = 'SELECT id FROM users WHERE username = ?';
+
+            this.mysqlConn.query(query, [username], (error, result) => {
+                if (error) {
+                    return reject(JSON.stringify({ 'error': 'Database error.' }));
+                }
+
+                let userId = result[0].id;
+
+                this._projectExists(userId, projectName).then(projectExists => {
+                    if (projectExists) {
+                        query = 'UPDATE creations SET content = ? WHERE user_id = ? AND project_name = ?';
+                    } else {
+                        query = 'INSERT INTO creations (content, user_id, project_name) VALUES (?, ?, ?)';
+                    }
+
+                    this.mysqlConn.query(query, [body, userId, projectName], (error, result) => {
+                        if (error) {
+                            return reject(JSON.stringify({ 'error': 'Database error.' }));
+                        }
+
+                        return resolve(JSON.stringify({'success': 'Project saved.'}));
+                    });
+                }).catch(reason => {
+                    console.error(reason);
+                    return reject(JSON.stringify({ 'error': 'An error occurred.' }))
+                });
+            });
+        }));
+    }
+
+    _projectExists(userId, projectName) {
+        return new Promise(((resolve, reject) => {
+            if (userId === undefined || projectName === undefined || userId === '' || projectName === '') {
+                throw new ReferenceError('Invalid params in projectExists method.' + userId + projectName);
+            }
+
+            let query = 'SELECT COUNT(*) FROM creations WHERE user_id = ? AND project_name = ?';
+
+            this.mysqlConn.query(query, [userId, projectName], (error, result) => {
+                if (error) {
+                    throw new SQLException();
+                }
+
+                return resolve(result.length > 0);
+            })
+        }));
+    }
 }
 
 module.exports = UserModel;

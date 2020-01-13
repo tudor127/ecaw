@@ -71,9 +71,12 @@ router.get('/category/:name', function (req, res, next) {
 
 router.post('/save/:projectName', function (req, res, next) {
     let userModel = new UserModel();
-    console.log(req.body);
-    console.log(req.session.loggedin);
-    res.end('[]');
+
+    userModel.saveProject(req.session.username, req.params.projectName, req.body).then(value => {
+        res.end(value);
+    }).catch(reason => {
+        res.end(reason);
+    });
 });
 
 module.exports = router;
