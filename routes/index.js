@@ -75,7 +75,7 @@ router.post('/save/:projectName', function (req, res, next) {
     userModel.saveProject(req.session.username, req.params.projectName, req.body).then(value => {
         res.end(value);
     }).catch(reason => {
-        res.end(reason);
+        res.status(400).end(reason);
     });
 });
 

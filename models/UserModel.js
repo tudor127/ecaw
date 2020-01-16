@@ -63,11 +63,19 @@ class UserModel {
 
     saveProject(username, projectName, body) {
         return new Promise(((resolve, reject) => {
+            if (!username) {
+                return reject(JSON.stringify({ 'error': 'You need to be logged in.' }));
+            }
+
             let query = 'SELECT id FROM users WHERE username = ?';
 
             this.mysqlConn.query(query, [username], (error, result) => {
                 if (error) {
                     return reject(JSON.stringify({ 'error': 'Database error.' }));
+                }
+
+                if (result.length === 0) {
+                    return reject(JSON.stringify({ 'error': 'You need to be logged in.' }));
                 }
 
                 let userId = result[0].id;
@@ -100,7 +108,7 @@ class UserModel {
                 throw new ReferenceError('Invalid params in projectExists method.' + userId + projectName);
             }
 
-            let query = 'SELECT COUNT(*) FROM creations WHERE user_id = ? AND project_name = ?';
+            let query = 'SELECT user_id FROM creations WHERE user_id = ? AND project_name = ?';
 
             this.mysqlConn.query(query, [userId, projectName], (error, result) => {
                 if (error) {
