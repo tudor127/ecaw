@@ -52,9 +52,47 @@ router.get('/', function (req, res, next) {
 			tooltip: "Triangle",
 			id: "triangle"
 		}];
+        
+                var projects = [{
+            name: "Project1",
+        },{
+            name: "Project2",
+        },{
+            name: "Project3",
+        },{
+            name: "Project4",
+        },{
+            name: "Project5",
+        },{
+            name: "Project6",
+        },{
+            name: "Project1",
+        },{
+            name: "Project2",
+        },{
+            name: "Project3",
+        },{
+            name: "Project4",
+        },{
+            name: "Project5",
+        },{
+            name: "Project6",
+        },{
+            name: "Project1",
+        },{
+            name: "Project2",
+        },{
+            name: "Project3",
+        },{
+            name: "Project4",
+        },{
+            name: "Project5",
+        },{
+            name: "Project6",
+        },];
 
-        let user = {'logged': log_var, 'name': user_name};
-        res.render('index', {title: 'ECAW', categories: results, user: user, toolbox});
+        let user = {'logged': log_var, 'name': user_name,'firstLetter':user_name.charAt(0)};
+        res.render('index', {title: 'ECAW', categories: results, user: user, toolbox,projects});
     });
 });
 
