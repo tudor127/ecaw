@@ -16,7 +16,7 @@ router.use(express.json());
 router.post('/', function(req, res) {
 	 var username=req.body.username;
 	 var password=req.body.password;
-	 var userModel = new UserModel(mysql);
+	 var userModel = new UserModel();
      userModel.checkUser(username,password,function(result){
      	if(parseInt(result)==1){
      		req.session.loggedin = true;

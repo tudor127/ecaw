@@ -1,6 +1,7 @@
 var express = require('express');
 var mysql = require('../models/mysql');
 var MediaContent = require('../models/MediaContentModel');
+var UserModel = require('../models/UserModel');
 var router = express.Router();
 var session = require('express-session');
 var bodyParser = require('body-parser');
@@ -12,6 +13,8 @@ router.use(session({
     resave: true,
     saveUninitialized: true
 }));
+
+router.use(bodyParser.raw());
 router.use(bodyParser.urlencoded({extended: true}));
 router.use(bodyParser.json());
 
@@ -98,9 +101,19 @@ router.get('/', function (req, res, next) {
 
 router.get('/category/:name', function (req, res, next) {
     mediaContent.getCategoryContent(req.params.name, req.query.page).catch(reason => {
-        res.end("[]");
+        res.end('[]');
     }).then(value => {
         res.end(JSON.stringify(value));
+    });
+});
+
+router.post('/save/:projectName', function (req, res, next) {
+    let userModel = new UserModel();
+
+    userModel.saveProject(req.session.username, req.params.projectName, req.body).then(value => {
+        res.end(value);
+    }).catch(reason => {
+        res.status(400).end(reason);
     });
 });
 

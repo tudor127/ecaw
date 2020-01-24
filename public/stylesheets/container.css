@@ -4,6 +4,68 @@
     background-color: #979797;
 }
 
+.errorMessage, .successMessage {
+    position: absolute;
+    width: 20rem;
+    box-sizing: border-box;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 0.3rem 0.05rem #000000;
+}
+
+.errorMessage {
+    border: darkred 0.15rem solid;
+}
+
+.successMessage {
+    border: green 0.15rem solid;
+}
+
+.messageTitle {
+    height: 2.5rem;
+    line-height: 2.5rem;
+}
+
+.errorMessage > hr {
+    border: darkred 0.15rem solid;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.successMessage > hr {
+    border: green 0.15rem solid;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.messageText {
+    padding: 1rem 0.5rem;
+}
+
+.messageTitle, .messageText {
+    text-align: center;
+    vertical-align: center;
+}
+
+.messageFooter {
+    padding: 0.3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-content: space-around;
+    background-color: #1d435b;
+}
+
+.messageButton {
+    border: #979797 0.05rem solid;
+    background-color: #002c41;
+    padding: 0.3rem 0.4rem;
+    color: white;
+    cursor: pointer;
+}
+
 @media screen and (max-width: 480px) {
     #container {
         width: 100%;

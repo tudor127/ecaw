@@ -5,6 +5,7 @@ export class ContainerController {
         this.selectedColor = document.getElementById('color').value;
         this.selectedObject = null;
         this.currentlyCreatingPolygon = null;
+        this.projectName = 'Untitled';
 
         fabric.util.requestAnimFrame(function render() {
             this.canvas.renderAll();
@@ -13,6 +14,73 @@ export class ContainerController {
 
         this.canvas.on('mouse:down', this.drawListener.bind(this));
         document.getElementById(this.selectedToolId).classList.add('selectedTool');
+    }
+
+    /**
+     * Sends a request to the server to save the project.
+     * Shows the response message.
+     */
+    saveProject() {
+        let projectContent = new Blob([JSON.stringify(this.canvas)]);
+
+        fetch(`/save/${encodeURIComponent(this.projectName)}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/octet-stream'
+            },
+            body: projectContent
+        }).catch(reason => {
+            this.createMessage("Network failed.", 'error');
+        }).then(response => response.json()).then(response => {
+            if (response.success) {
+                this.createMessage(response.success, 'success');
+            } else {
+                this.createMessage(response.error, 'error');
+            }
+        });
+    }
+
+    /**
+     * Creates a message box.
+     *
+     * @param {string} message Message of the message box.
+     * @param {string} type Type of the message box. Can be error or success.
+     */
+    createMessage(message, type) {
+        type = type.toLowerCase();
+
+        let messageContainer = document.createElement('div');
+        messageContainer.classList.add(type + 'Message');
+
+        let titleContainer = document.createElement('div');
+        titleContainer.classList.add('messageTitle');
+        titleContainer.innerText = type.slice(0, 1).toUpperCase() + type.slice(1);
+        messageContainer.appendChild(titleContainer);
+        messageContainer.appendChild(document.createElement('hr'));
+
+        let textContainer = document.createElement('div');
+        textContainer.classList.add('messageText');
+        textContainer.innerText = message;
+        messageContainer.appendChild(textContainer);
+
+        let messageFooter = document.createElement('div');
+        messageFooter.classList.add('messageFooter');
+        let footerButton = document.createElement('button');
+        footerButton.classList.add('messageButton');
+        footerButton.innerText = 'OK';
+        messageFooter.appendChild(footerButton);
+        messageContainer.appendChild(messageFooter);
+
+        footerButton.addEventListener('click', () => {
+            messageContainer.remove();
+        });
+
+        document.getElementById('container').appendChild(messageContainer);
+        document.body.appendChild(messageContainer);
+    }
+
+    changeTitle(event) {
+        this.projectName = event.target.innerText;
     }
 
     /**
