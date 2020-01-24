@@ -19,6 +19,8 @@ document.getElementById("registerClose").addEventListener("click", userControlle
 document.getElementById("register_form").addEventListener("submit", userController.register);
 document.getElementById("save").addEventListener("click", containerController.saveProject.bind(containerController));
 document.getElementById("projectName").addEventListener("input", containerController.changeTitle.bind(containerController))
+document.getElementById("projectsPanelButton").addEventListener("click", userController.showProjectsPanel);
+document.getElementById("projectsClose").addEventListener("click", userController.hideProjectsPanel);
 
 // toolbox listeners
 document.getElementById("color").addEventListener("change", containerController.setColor.bind(containerController));

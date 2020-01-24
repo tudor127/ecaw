@@ -1,0 +1,9 @@
+#projectsPanelBox
+    #projectsPanel
+        button(id="projectsClose",class="fa fa-times")
+        h1 Your projects
+        .projectsBox
+            - if (projects.length > 0) {
+                each project in projects
+                    .project #{project.name}
+            - }
