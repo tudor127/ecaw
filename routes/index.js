@@ -52,7 +52,7 @@ router.get('/', function (req, res, next) {
 			tooltip: "Triangle",
 			id: "triangle"
 		}];
-        
+
                 var projects = [{
             name: "Project1",
         },{
@@ -91,7 +91,7 @@ router.get('/', function (req, res, next) {
             name: "Project6",
         },];
 
-        let user = {'logged': log_var, 'name': user_name,'firstLetter':user_name.charAt(0)};
+        let user = {'logged': log_var, 'name': user_name,'firstLetter':user_name.charAt(0).toUpperCase()};
         res.render('index', {title: 'ECAW', categories: results, user: user, toolbox,projects});
     });
 });

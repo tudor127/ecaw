@@ -9,13 +9,8 @@ nav
             button(id='signUp') Sign Up
             button(id='logIn') Log In
         else
-            span(id='user_name')
-                span(class='fa fa-user',style='margin-right:3px;font-size:14px')
-                span= user.name
-            button(id='logOut') Log Out
             button(id='user_name_icon') #{user.firstLetter}
-            #user_menu
-                button(id='projectsPanelButton') Projects
-                button(id='logOut') Log Out
+            button(id='projectsPanelButton') Projects
+            button(id='logOut') Log Out
             button(id='signUp',class='hidden') Sign Up
             button(id='logIn',class='hidden') Log In

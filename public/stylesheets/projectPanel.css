@@ -29,7 +29,6 @@ color:
 	position: absolute;
 	top: 0px;
 	left: 0px;
-	z-index: 2;
 }
 
 #projectsClose{
@@ -83,41 +82,3 @@ color:
 background:#ccc;
 }
 
-#user_menu{
-display: block;
-width: 250px;
-min-height: 215px;
-position: absolute;
-right: 0px;
-background:
-#eee;
-border-radius: 10px 0px 0px 10px;
-top: 45px;
-padding: 20px 25px;
--webkit-animation-name: display;
--webkit-animation-duration: .6s;
-animation-name: display;
-animation-duration: .6s;
-z-index: 1;
-}
-
-#user_name_icon{
-display: block;
-background:
-#fff;
-padding: 5px;
-border-radius: 50%;
-color:
-#777;
-width: 30px;
-height: 30px;
-text-transform: capitalize;
-font-size: 20px;
-line-height: 19px;
-float: right;
-margin-right: 10px;
-}
-
-#user_name_icon:hover{
-	background:#ddd;
-}
