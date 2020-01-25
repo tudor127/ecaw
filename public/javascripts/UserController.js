@@ -1,3 +1,5 @@
+import {container_controller} from "./index.js";
+
 export class UserController {
     constructor() {
     }
@@ -22,8 +24,8 @@ export class UserController {
             projectsPanelButton.style.display="block";
             signupBtn.style.display="none";
             loginBtn.style.display="none";
-            document.getElementById("user_name").style.display = 'block';
-            document.getElementById("user_name").childNodes[1].innerHTML = username;
+            document.getElementById("user_name_icon").style.display = 'block';
+            document.getElementById("user_name_icon").innerHTML = username.charAt(0).toUpperCase();
             // loginBtn.innerHTML='Log out';
 
             } 
@@ -58,7 +60,7 @@ export class UserController {
                 signupBtn.style.display="block";
                 loginBtn.style.display="block";
                 projectsPanelButton.style.display="none";
-                document.getElementById("user_name").style.display = 'none';
+                document.getElementById("user_name_icon").style.display = 'none';
             }
         };
         xhttp.open("GET", "/logout", true);
@@ -88,8 +90,9 @@ export class UserController {
                     logoutBtn.style.display="block";
                     registerBtn.style.display="none";
                     loginBtn.style.display="none";
-                    document.getElementById("user_name").style.display = 'block';
-                    document.getElementById("user_name").childNodes[1].innerHTML = username;
+                    projectsPanelButton.style.display="block";
+                    document.getElementById("user_name_icon").style.display = 'block';
+                    document.getElementById("user_name_icon").innerHTML = username.charAt(0).toUpperCase();
                 }
             else if(parseInt(this.responseText)==-1){
                 document.getElementById("register_result").innerHTML = "Connection error";
@@ -128,9 +131,40 @@ export class UserController {
        document.getElementById("register_result").style.background="transparent";
     }
 
+
+
     showProjectsPanel(){
-    let projectsPanel=document.getElementById('projectsPanelBox');
-       projectsPanel.style.display="block";
+        // let containerController = new ContainerController();
+        let projectsPanel=document.getElementById('projectsPanelBox');
+        projectsPanel.style.display="block";
+        var xhttp = new XMLHttpRequest();
+        let projectsBox=document.getElementById('projectsBox');
+        xhttp.onreadystatechange=function() {
+            if (this.readyState == 4 && this.status == 200) {
+            // .project #{project.name}
+            // projectsBox.innerHTML=this.responseText;
+
+            let projectsJSON=JSON.parse(this.responseText);
+            if(projectsJSON.length<1){
+                projectsBox.innerHTML='<h1>You have no saved project!<h1>';
+            }
+            else{
+                projectsBox.innerHTML='';
+            }
+            for(let i = 0; i < projectsJSON.length; i++) {
+            let project = projectsJSON[i];
+            // projectsBox.innerHTML+="<div class='project' id='project_"+project.project_name+"'>"+project.project_name+"</div>";
+               let projectDiv=document.createElement('div');
+               projectDiv.id='project_'+project.project_name;
+               projectDiv.innerHTML=project.project_name;
+               projectDiv.classList.add('project');
+               projectDiv.addEventListener("click", function(){console.log(project.project_name);container_controller.loadProject(JSON.stringify(project.content),project.project_name,container_controller);});
+               projectsBox.appendChild(projectDiv);
+            }
+            }
+        };
+        xhttp.open("GET", "/projects", true);
+        xhttp.send();    
     }
 
     hideLoginForm(){
@@ -147,4 +181,5 @@ export class UserController {
     let projectsPanel=document.getElementById('projectsPanelBox');
        projectsPanel.style.display="none";
     }
+
 }

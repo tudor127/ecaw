@@ -119,6 +119,16 @@ class UserModel {
             })
         }));
     }
+
+  getProjects(username,callback){
+        var sql = "SELECT project_name,CONVERT(content USING utf8) as content from creations join users on creations.user_id=users.id where users.username=?";
+        this.mysqlConn.query(sql, [username], function (err, results) {
+            if (err) {
+                return callback('error');
+            }
+            return callback(results);
+        });
+  }
 }
 
 module.exports = UserModel;

@@ -98,3 +98,7 @@ margin-bottom: 15px;
 .hidden{
 	display: none;
 }
+
+#registerClose,#loginClose{
+	background: transparent;
+}

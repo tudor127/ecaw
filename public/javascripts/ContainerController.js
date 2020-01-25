@@ -189,6 +189,15 @@ export class ContainerController {
 		this.selectedToolId = 'move';
     }
 
+    loadProject(json,name,container){
+        json=JSON.parse(json);
+        container.canvas.loadFromJSON(json, container.canvas.renderAll.bind(container.canvas));
+        container.projectName = name;
+        document.getElementById('projectName').innerHTML=name;
+        document.getElementById('projectsPanelBox').style.display="none";
+
+    }
+
     /**
      * Creates circle at given coordinates
      *

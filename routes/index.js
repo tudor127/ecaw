@@ -94,6 +94,7 @@ router.get('/', function (req, res, next) {
             name: "Project6",
         },];
 
+
         let user = {'logged': log_var, 'name': user_name,'firstLetter':user_name.charAt(0).toUpperCase()};
         res.render('index', {title: 'ECAW', categories: results, user: user, toolbox,projects});
     });
@@ -117,4 +118,12 @@ router.post('/save/:projectName', function (req, res, next) {
     });
 });
 
+router.get('/projects', function (req, res, next) {
+    let userModel = new UserModel();
+    userModel.getProjects(req.session.username,function(results){
+        res.header("Content-Type", "text/json");
+        res.end(JSON.stringify(results));
+    });
+
+});
 module.exports = router;

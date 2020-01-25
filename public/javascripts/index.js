@@ -39,3 +39,5 @@ window.addEventListener("resize", function() {
     containerController.canvas.setWidth(container.offsetWidth);
     containerController.canvas.setHeight(container.offsetHeight);
 });
+
+export let container_controller=containerController;

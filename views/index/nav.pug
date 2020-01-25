@@ -3,12 +3,12 @@ nav
     #projectName(contenteditable='true') Untitled
     #navButtons
         if user.logged==false
-            span(id='user_name',style='display:none')
-                span(class='fa fa-user',style='margin-right:3px;font-size:14px')
-                span= user_name
+            button(id='user_name_icon',class='hidden') #{user.firstLetter}
+            button(id='projectsPanelButton',class='hidden') Projects
             button(id='logOut',class='hidden') Log Out
             button(id='signUp') Sign Up
             button(id='logIn') Log In
+
         else
             button(id='user_name_icon') #{user.firstLetter}
             button(id='projectsPanelButton') Projects
