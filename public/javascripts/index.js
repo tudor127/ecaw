@@ -40,4 +40,35 @@ window.addEventListener("resize", function() {
     containerController.canvas.setHeight(container.offsetHeight);
 });
 
+// Shortcuts
+document.onkeydown = (event) => {
+    let reservedKeys = ["KeyQ", "KeyD", "KeyF", "KeyX", "KeyS"];
+
+    if (!event.ctrlKey || !reservedKeys.includes(event.code)) {
+        return;
+    }
+
+    event.preventDefault();
+
+    switch (event.code) {
+        case "KeyQ":
+            document.getElementById("move").click();
+            break;
+        case "KeyD":
+            document.getElementById("delete").click();
+            break;
+        case "KeyF":
+            document.getElementById("pen").click();
+            break;
+        case "KeyX":
+            document.getElementById("color").click();
+            break;
+        case "KeyS":
+            containerController.saveProject();
+            break;
+        default:
+    }
+    console.log(event);
+};
+
 export let container_controller=containerController;
