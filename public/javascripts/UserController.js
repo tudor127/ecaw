@@ -156,9 +156,17 @@ export class UserController {
             // projectsBox.innerHTML+="<div class='project' id='project_"+project.project_name+"'>"+project.project_name+"</div>";
                let projectDiv=document.createElement('div');
                projectDiv.id='project_'+project.project_name;
-               projectDiv.innerHTML=project.project_name;
+               projectDiv.innerHTML='<h1>'+project.project_name+'</h1>';
+               let editBtn=document.createElement('button');
+               editBtn.classList.add('editBtn');
+               editBtn.innerHTML='Edit';
+               projectDiv.innerHTML+=`<div><a class="viewProjectLink" href='/user/`+project.username+`/project/`+project.project_name+`' target="_blank">
+               <button>View</button></a></div>`;
+               let url='http://localhost:3000/user/'+'test'+'/project/'+project.project_name;
+               projectDiv.innerHTML+=`<div class="fb-share-button" style="margin-top:25px" data-href="`+url+`" data-layout="button" data-size="small"><a title="Share on facebook" class="shareLink" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=`+url+`;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>`;
                projectDiv.classList.add('project');
-               projectDiv.addEventListener("click", function(){console.log(project.project_name);container_controller.loadProject(JSON.stringify(project.content),project.project_name,container_controller);});
+               editBtn.addEventListener("click", function(){console.log(project.project_name);container_controller.loadProject(JSON.stringify(project.content),project.project_name,container_controller);});
+               projectDiv.appendChild(editBtn);
                projectsBox.appendChild(projectDiv);
             }
             }

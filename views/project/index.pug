@@ -1,0 +1,9 @@
+extends ../layout
+
+block content
+
+    include nav
+    #workplace(style="height:calc(100% - var(--navHeight) - var(--footerHeight))")
+        include container
+        link(rel='stylesheet', href='/stylesheets/project.css')
+        script(src='/javascripts/project.js', type="module")

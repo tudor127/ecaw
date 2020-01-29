@@ -51,52 +51,17 @@ router.get('/', function (req, res, next) {
 			tooltip: "Circle",
 			id: "circle"
 		},{
+            faClass: "fas fa-pen",
+            tooltip: "Pen",
+            id: "pen"
+        },{
 			faClass: "fa fa-caret-up",
 			tooltip: "Triangle",
 			id: "triangle"
 		}];
 
-                var projects = [{
-            name: "Project1",
-        },{
-            name: "Project2",
-        },{
-            name: "Project3",
-        },{
-            name: "Project4",
-        },{
-            name: "Project5",
-        },{
-            name: "Project6",
-        },{
-            name: "Project1",
-        },{
-            name: "Project2",
-        },{
-            name: "Project3",
-        },{
-            name: "Project4",
-        },{
-            name: "Project5",
-        },{
-            name: "Project6",
-        },{
-            name: "Project1",
-        },{
-            name: "Project2",
-        },{
-            name: "Project3",
-        },{
-            name: "Project4",
-        },{
-            name: "Project5",
-        },{
-            name: "Project6",
-        },];
-
-
         let user = {'logged': log_var, 'name': user_name,'firstLetter':user_name.charAt(0).toUpperCase()};
-        res.render('index', {title: 'ECAW', categories: results, user: user, toolbox,projects});
+        res.render('index', {title: 'ECAW', categories: results, user: user, toolbox});
     });
 });
 
@@ -108,9 +73,22 @@ router.get('/category/:name', function (req, res, next) {
     });
 });
 
+router.get('/user/:user/project/:project', function (req, res, next) {
+    let userModel=new UserModel();
+    userModel.getProject(req.params.user, req.params.project,function(result){
+        if(result.length>0){
+            res.render('project', {title: 'ECAW','project':result[0]});
+        }
+        else{
+            console.log(result);
+            res.header("Content-Type", "text/html");
+            res.end('<h1>Project not found!</h1>');
+        }    
+    });
+});
+
 router.post('/save/:projectName', function (req, res, next) {
     let userModel = new UserModel();
-
     userModel.saveProject(req.session.username, req.params.projectName, req.body).then(value => {
         res.end(value);
     }).catch(reason => {

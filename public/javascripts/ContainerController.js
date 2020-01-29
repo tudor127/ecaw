@@ -6,7 +6,7 @@ export class ContainerController {
         this.selectedObject = null;
         this.currentlyCreatingPolygon = null;
         this.projectName = 'Untitled';
-
+        this.canvas.isDrawingMode= 0;
         fabric.util.requestAnimFrame(function render() {
             this.canvas.renderAll();
             fabric.util.requestAnimFrame(render.bind(this));
@@ -90,7 +90,7 @@ export class ContainerController {
      */
     setTool(event) {
         let selectedToolId = event.target.id;
-        let possibleToolIds = ['move', 'polygon', 'square', 'circle', 'triangle'];
+        let possibleToolIds = ['move', 'polygon', 'square', 'circle', 'triangle','pen'];
 
         if (!possibleToolIds.includes(selectedToolId)) {
             return;
@@ -102,6 +102,9 @@ export class ContainerController {
         // If the same tool is selected then select 'move' since that would mean to cancel the currently selected tool
         this.selectedToolId = this.selectedToolId === selectedToolId ? 'move' : selectedToolId;
         document.getElementById(this.selectedToolId).classList.add('selectedTool');
+        if(this.selectedToolId=='move'){
+            this.canvas.isDrawingMode= 0;
+        }
     }
 
     /**
@@ -126,19 +129,27 @@ export class ContainerController {
     drawShape(x, y) {
         switch (this.selectedToolId) {
             case 'square':
+                this.canvas.isDrawingMode= 0;
                 this.createSquare(x, y);
                 break;
             case 'circle':
+                this.canvas.isDrawingMode= 0;
                 this.createCircle(x, y);
                 break;
             case 'triangle':
+                this.canvas.isDrawingMode= 0;
                 this.createTriangle(x, y);
                 break;
             case 'delete':
+                this.canvas.isDrawingMode= 0;
                 this.deleteObject();
                 break;
             case 'polygon':
+                this.canvas.isDrawingMode= 0;
                 this.createPolygon(x, y);
+                break;
+            case 'pen':
+                this.usePen();
                 break;
         }
     }
@@ -237,6 +248,12 @@ export class ContainerController {
 		this.selectedToolId = 'move';
     }
 
+    usePen(){
+        this.canvas.isDrawingMode= 1;
+        this.canvas.freeDrawingBrush.color =this.selectedColor;
+        this.canvas.freeDrawingBrush.width = 5;
+    }
+
     /**
      * Creates polygon at given coordinates
      * Polygon is progressively created from the points given
@@ -297,4 +314,5 @@ export class ContainerController {
 
         this.canvas.add(media);
     }
+
 }

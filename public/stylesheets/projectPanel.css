@@ -65,20 +65,68 @@ color:
 }
 
 .projectsBox .project{
-	width: 22%;
-	padding: 50px;
-	box-sizing: border-box;
-	float: left;
-	margin: 15px 1.5%;
-	display: block;
-	border:2px solid #ccc;
-	border-radius: 10px;
-	cursor: pointer;
-	transition-duration: .3s;
+width: 30.3%;
+padding: 20px 15px;
+box-sizing: border-box;
+float: left;
+margin: 15px 1.5%;
+display: block;
+border: 2px solid
+#ccc;
+border-radius: 10px;
+cursor: pointer;
+transition-duration: .3s;
+text-align: center;
+min-height: 140px;
+position: relative;
+}
 
+
+div.projectsBox div.project h1{
+width: 100% !important;
+margin: 10px 0px !important;
+font-size: 18px !important;
+color:
+#555 !important;
+font-family: Arial;
+min-height: 35px;
+position: absolute;
+top: 5px;
+}
+
+.projectsBox .project .viewProjectLink{
+position: absolute;
+top: 50px;
+left: 13%;
+width: 35%;
+}
+
+.projectsBox .project .viewProjectLink button{
+width: 100%;
+}
+
+.projectsBox .project .editBtn{
+position: absolute;
+top: 50px;
+right: 13%;
+width: 35%;
 }
 
 .projectsBox .project:hover{
 background:#ccc;
 }
 
+.shareLink{
+background:
+#2169d9;
+color:
+#fff;
+text-decoration: none;
+padding: 2px 5px;
+border-radius: 3px;
+font-size: 13px;
+position: absolute;
+bottom: 25px;
+width: 20%;
+left: 40%;
+}
