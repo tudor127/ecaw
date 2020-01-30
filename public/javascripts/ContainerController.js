@@ -6,7 +6,7 @@ export class ContainerController {
         this.selectedObject = null;
         this.currentlyCreatingPolygon = null;
         this.projectName = 'Untitled';
-        this.canvas.isDrawingMode= 0;
+        this.canvas.isDrawingMode = 0;
         fabric.util.requestAnimFrame(function render() {
             this.canvas.renderAll();
             fabric.util.requestAnimFrame(render.bind(this));

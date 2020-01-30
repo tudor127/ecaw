@@ -68,7 +68,6 @@ document.onkeydown = (event) => {
             break;
         default:
     }
-    console.log(event);
 };
 
 export let container_controller=containerController;

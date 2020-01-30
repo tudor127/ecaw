@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECAW User Guide</title>
+</head>
+<body>
+    <article resource="#" typeof="schema:ScholarlyArticle">
+        <header>
+            <h1 property="schema:name">ECAW User Guide</h1>
+        </header>
+        <section typeof="sa:AuthorsList">
+            <h2>Authors</h2>
+            <span typeof="schema:Person" resource="http://orcid.org/0000-0003-1279-3709">
+                <meta property="schema:givenName" content="Tudor">
+                <meta property="schema:familyName" content="Ganeanu">
+                <span property="schema:name">Ganeanu Tudor</span>
+            </span>
+            <br/>
+            <span typeof="schema:Person" resource="http://orcid.org/0000-0003-1279-3709">
+                <meta property="schema:givenName" content="Alexandru">
+                <meta property="schema:familyName" content="Necula">
+                <span property="schema:name">Necula Alexandru</span>
+            </span>
+        </section>
+        <section>
+            <h2>Demo</h2>
+            <video src="ecaw.mp4" width="500" controls="controls"></video>
+        <section>
+            <h2>Install</h2>
+            <p>
+                Requirements:
+                <ul>
+                    <li>Node</li>
+                    <li><a href="https://www.npmjs.com/package/nodemon">nodemon</a></li>
+                    <li>mysql server</li>
+                </ul>
+            </p>
+            <p>
+                Pocess:
+                <ol>
+                    <li>run npm install</li>
+                    <li>create mysql database</li>
+                    <li>
+                        create config.json file in the root folder with the following content
+                        <br/>
+                        <code>
+                            {<br/>
+                              &emsp;"database": {<br/>
+                                &emsp;&emsp;"host": "",<br/>
+                                &emsp;&emsp;"user": "",<br/>
+                                &emsp;&emsp;"password": "",<br/>
+                                &emsp;&emsp;"database": "",<br/>
+                                &emsp;&emsp;"port": 3306<br/>
+                              &emsp;}<br/>
+                            }<br/>
+                        </code>
+                    </li>
+                    <li>go with console to /models/migrations_seed</li>
+                    <li>run <code>node migrations create</code> to create database structure</li>
+                    <li>run <code>node seed</code></li>
+                    <li>refresh is possible with <code>node migrations refresh</code></li>
+                    <li>go to root folder and run <code>npm run start</code></li>
+                    <li>open localhost:3000 in browser</li>
+                    <li>you should see this<br/><img src="1.PNG" width="500"></li>
+                </ol>
+            </p>
+            <p>
+                <h2>Using the app</h2>
+                <h3>Following scenaries are possible:</h3>
+                <p>Sign up/Log In/Log Out</p>
+                <p>Use the toolbox to the right to select a tool.</p>
+                <p>Use the tool by clicking on the workspace.</p>
+                <p>Use the arrow from the right of the screen to open media content box.</p>
+                <p>Select a category.</p>
+                <p>Click on an image/gif/video to add it to the workspace. Gifs are not playing (browser limitation).</p>
+                <p>Save the project and view saved projects with the Projects button in top right of the screen. You need to be logged in. Share on facebook is also possible.</p>
+                <p>Download the project as png. Currently images in projects are not supported to download in png.</p>
+            </p>
+        </section>
+    </article>  
+</body>
+</html>
